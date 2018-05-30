@@ -62,7 +62,8 @@ class connect_db(object):
             return -1
         user_id = self.getNumUser() + 1
         cursor = self.db.cursor()
-        sql = "insert into recommend_users.user_information values ("+str(user_id)+",'"+name+"','"+password+"',"+"NOW(),NOW(),NOW())"
+        sql = "insert into recommend_users.user_information values ("+str(user_id)+",'"+name+"','"+\
+                password+"',"+"NOW(),NOW(),NOW())"
         try:
             cursor.execute(sql)
             self.db.commit()
@@ -97,3 +98,24 @@ class connect_db(object):
                 return 0
         except:
             return 0
+    def getSimiUsers(self, user_id, sim):
+        cursor = self.db.cursor()
+        sql = "select ID1,ID2 from recommend.user_To_user_Similarity where (ID1="+str(user_id)+\
+                " or ID2="+str(user_id)+") and Similarity>"+str(sim)+" order by Similarity desc"
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            user = []
+            for row in results:
+                if row[0] == user_id:
+                    user.append(row[1])
+                else:
+                    user.append(row[0])
+            return user
+        except:
+            # auto adapt WoW 临时想到
+            sim -= 0.1
+            if sim > 0:
+                return self.getSimiUsers(user_id,sim)
+            else:
+                return -1
