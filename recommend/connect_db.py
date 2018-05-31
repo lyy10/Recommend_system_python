@@ -87,13 +87,13 @@ class connect_db(object):
         ID = self.isHaveName(name)
         if not ID:
             return -1
-        sql = "select Name,password from recommend_users.user_information where ID="+str(ID)
+        sql = "select ID,Name,password from recommend_users.user_information where ID="+str(ID)
         cursor = self.db.cursor()
         try:
             cursor.execute(sql)
             results = cursor.fetchall()
-            if name == results[0][0] and password == results[0][1]:
-                return 1
+            if name == results[0][1] and password == results[0][2]:
+                return results[0][0]
             else:
                 return 0
         except:

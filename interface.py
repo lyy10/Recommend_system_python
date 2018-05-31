@@ -5,7 +5,7 @@
 # 目前用户总数为 943 , 用户ID 从 1-943
 import sys
 
-# sys.path.append('./recommend')
+sys.path.append('./recommend')
 # import _init_users
 
 sys.path.append('./../Recommend_system_python/')
