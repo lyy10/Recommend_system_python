@@ -2,8 +2,10 @@
 #
 # init user account
 # May,29,2018 by Lyy
-
-import connect_db
+# May,31,2018 updated by Ch
+import sys
+sys.path.append('./../Recommend_system_python')
+from recommend import connect_db
 
 def insert_user(name, password):
     mysql = connect_db.connect_db()

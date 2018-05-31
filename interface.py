@@ -4,9 +4,13 @@
 # 接口在后期根据实际情况增加删除或变动
 # 目前用户总数为 943 , 用户ID 从 1-943
 import sys
-sys.path.append('./recommend')
-import _init_users
-import recommend_movies
+
+# sys.path.append('./recommend')
+# import _init_users
+
+sys.path.append('./../Recommend_system_python/')
+from recommend import _init_users
+from recommend import recommend_movies
 
 def get_recommend_movie(user_id):
     """
