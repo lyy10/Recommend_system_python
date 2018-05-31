@@ -9,14 +9,14 @@ import system_object
 class connect_db(object):
     def __init__(self):
         self.host = '172.16.124.17'
-        self.port = '3000'
+        self.port = '3306'
         self.user = 'recommend'
         self.password = 'recommend'
         self.table = 'recommend'
         self.db = pymysql.connect(self.host, self.user, self.password, self.table)
     def close(self):
         self.db.close()
-    
+
     def getNumUser(self):
         cursor = self.db.cursor()
         sql = 'select count(ID) from recommend_users.user_information'
@@ -113,9 +113,39 @@ class connect_db(object):
                     user.append(row[0])
             return user
         except:
-            # auto adapt WoW 临时想到
+            # auto. adapt WoW 临时想到
             sim -= 0.1
             if sim > 0:
                 return self.getSimiUsers(user_id,sim)
             else:
                 return -1
+    def getTestMovies(self, user_id):
+        cursor = self.db.cursor()
+        sql = 'select MID,Score from recommend.test_user where ID=' + str(user_id)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            movies = []
+            for row in results:
+                movies.append([row[0],row[1]])
+            return movies
+        except:
+            return -1
+    def getMoviesName(self, movie_id):
+        cursor = self.db.cursor()
+        sql = 'select Title from recommend.movies where MID=' + str(movie_id)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            return results[0][0]
+        except:
+            return 'null'
+    def getUserName(self, user_id):
+        cursor = self.db.cursor()
+        sql = 'select Name from recommend_users.user_information where ID=' + str(user_id)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            return results[0][0]
+        except:
+            return 'null'

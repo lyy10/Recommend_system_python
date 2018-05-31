@@ -2,7 +2,9 @@
 #
 # 采用图算法，计算可推荐的电影
 # May,29,2018 by Lyy
-
+import sys
+sys.path.append('./../')
+import system_object
 import connect_db
 import numpy as np
 from numpy.linalg import solve
@@ -59,13 +61,14 @@ def comput_recommend(user_id):
     #print(M[0])
     similarity_users = [str(-e) for e in similarity_users]
     similarity_movies = [str(e) for e in similarity_movies]
-    comput_group(M.tolist(), similarity_users+similarity_movies)
+    return comput_group(M.tolist(), similarity_users+similarity_movies)
 
 def comput_group(M, vertex):
     """
         该算法函数参考网络
         https://blog.csdn.net/Mr_tyting/article/details/65638435
     """
+    #print(vertex)
     alpha=0.8
     M = np.matrix(M)
     s = []
@@ -73,7 +76,7 @@ def comput_group(M, vertex):
         s.append([0])
     s.append([1])
     r0=np.matrix(s)#从'b'开始游走
-    print(r0.shape)
+    #print(r0.shape)
     n=M.shape[0]
     #直接解线性方程法
     A=np.eye(n)-alpha*M.T
@@ -81,13 +84,13 @@ def comput_group(M, vertex):
     begin=time.time()
     r=solve(A,b)
     end=time.time()
-    print('user time',end-begin)
+    #print('user time',end-begin)
     rank={}
     for j in range(n):
         rank[vertex[j]]=r[j]
     li=sorted(rank.items(),key=lambda x:x[1],reverse=True)
-    for ele in li:
-        print("%s:%.3f,\t" %(ele[0],ele[1]))
+    #for ele in li:
+    #    print("%s:%.3f,\t" %(ele[0],ele[1]))
     #采用CSR法对稀疏矩阵进行压缩存储，然后解线性方程
     data=list()
     row_ind=list()
@@ -102,11 +105,40 @@ def comput_group(M, vertex):
     begin=time.time()
     r=gmres(AA,b,tol=1e-08,maxiter=1)[0]
     end=time.time()
-    print("user time",end-begin)
+    #print("user time",end-begin)
     rank={}
     for j in range(n):
         rank[vertex[j]]=r[j]
     li=sorted(rank.items(),key=lambda x:x[1],reverse=True)
+    #for ele in li:
+    #    print("%s:%.3f,\t" % (ele[0], ele[1]))
+    temp = []
     for ele in li:
-        print("%s:%.3f,\t" % (ele[0], ele[1]))
-comput_recommend(405)
+        temp.append([ele[0],ele[1]])
+    return temp
+#comput_recommend(405)
+def getRecommendMovies(user_id):
+    movies = comput_recommend(user_id)
+    mysql = connect_db.connect_db()
+    have_watch = mysql.getUserMovies(user_id)
+    recommend = []
+    for row in movies:
+        i = 1
+        for r in have_watch:
+            if int(row[0]) < 0 or int(row[0]) == r.Mid:
+                i = 0
+                break
+        if i:
+            recommend.append(int(row[0]))
+    user = system_object.User(user_id)
+    user.name = mysql.getUserName(user_id)
+    for i in range(len(recommend)):
+        movie = system_object.Movies(recommend[i])
+        movie.Name = mysql.getMoviesName(recommend[i])
+        user.movies.append(movie)
+    mysql.close()
+    return user
+#user = getRecommendMovies(405)
+#print(user.ID,user.name)
+#for row in user.movies:
+#    print(row.Mid,row.Name)

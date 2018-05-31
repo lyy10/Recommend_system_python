@@ -20,6 +20,8 @@ class User(object):
     def __init__(self, ID):
         # 用户ID
         self.ID = ID
+        # 用户名
+        self.name = ''
         # 用户电影列表
         self.movies = []
 
