@@ -1,9 +1,8 @@
-#
-
-#related object
+# related object
 # May,26,2018 by Lyy
-# Movies Object
+# June,11,2018 updated by Ch
 
+# Movies Object
 class Movies(object):
     def __init__(self, _Mid=-1, _Socre=-1):
         # 电影ID
@@ -16,7 +15,7 @@ class Movies(object):
         self.Name = ''
 
 # User object
-class User(object):
+class User():
     def __init__(self, ID):
         # 用户ID
         self.ID = ID
@@ -24,6 +23,18 @@ class User(object):
         self.name = ''
         # 用户电影列表
         self.movies = []
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.ID
 
 # Movies Detail object
 class MoviesDetail(object):
@@ -36,3 +47,16 @@ class MoviesDetail(object):
         self.kind = ''
         # 电影跳转链接
         self.url = ''
+
+        # 以下是我所需要的，有重复的你进行合并
+        # 导演
+        # 编剧
+        # 主演
+        # 类型       （相当于你定义的电影类别）
+        # 制片国家/地区
+        # 语言
+        # 上映日期
+        # 片长
+        # 评分
+        # 剧情简介    （相当于你定义的电影故事线）
+        # 电影播放链接 （相当于你定义的电影跳转链接）
