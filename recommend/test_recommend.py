@@ -9,6 +9,7 @@ def test_recommend(user_id):
     mysql = connect_db.connect_db()
     recommend = recommend_movies.comput_recommend(user_id)
     test_movies = mysql.getTestMovies(user_id)
+    mysql.close()
     test = []
     stdout_backup = sys.stdout
     num = len(test_movies)
@@ -25,6 +26,7 @@ def test_recommend(user_id):
                 N += 1
                 if row[1] >= 3:
                     NN += 1
+                break
     #for row in test:
     #    print(row)
     log_file = open("log.log", "a")
@@ -35,6 +37,7 @@ def test_recommend(user_id):
         print(user_id, N/num, NN/N)
     sys.stdout = stdout_backup
     log_file.close()
-for i in range(1,101):
-    print(i)
-    test_recommend(i)
+if __name__ == '__main__':
+    for i in range(1,101):
+        print(i)
+        test_recommend(i)
