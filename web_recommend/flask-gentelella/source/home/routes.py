@@ -39,7 +39,7 @@ def route_template(template):
 @blueprint.route('/recommend')
 @login_required
 def recommend():
-    user = interface.get_recommend_movie(current_user.ID)
+    user = interface.get_recommend_movie(int(current_user.ID))
     movie_id_list = []
     movie_name_list = []
     movie_averay_socre_list = []
@@ -47,8 +47,9 @@ def recommend():
         movie_id_list.append(each.Mid)
         movie_name_list.append(each.Name)
         movie_averay_socre_list.append(each.averay_socre)
-
-    return render_template('recommend.html', movie_id_list=movie_id_list, movie_name_list=movie_name_list, movie_averay_socre_list=movie_averay_socre_list)
+    count = len(movie_id_list)
+    count = count//5
+    return render_template('recommend.html', movie_id_list=movie_id_list, movie_name_list=movie_name_list, movie_averay_socre_list=movie_averay_socre_list, count=count)
 
 
 @blueprint.route('/movie_details')
