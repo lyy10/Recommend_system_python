@@ -1,0 +1,91 @@
+{% extends "base_site.html" %}
+
+{% block title %} Home {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="row">
+      <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1">
+        <div class="x_panel">
+          <div class="x_content">
+            <table id="mytable" class="table">
+                <thead style="display: none">
+                  <tr>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if (movie_id_list|length)%5 == 0 %}
+                  {% for i in range(movie_id_list|length) %}
+                    {% if i%5 == 0 %}
+                    <tr>
+                      {% for j in range(0,5) %}
+                      <td>
+                        <div class="col-md-12">
+                          <div class="image view view-first">
+                              <a href="{{ url_for('home_blueprint.movie_details') }}" target="_blank">
+                                <img style="width:100%" src="/static/images/test.webp" alt="image">
+                              </a>
+                          </div>
+                          <div class="caption">
+                            <ul class="list-inline">
+                              <li><span>{{ movie_name_list[i+j] }} </span></li>
+                              <li><span style="color:#2A3F54">{{ movie_averay_socre_list[i+j] }}</span></li>
+                              <!--<li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>-->
+                            </ul>
+                          </div>
+                        </div>
+                      </td>
+                      {% endfor %}
+                    </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ super() }}
+  <!-- FullCalendar -->
+
+  <script src="{{ url_for('static', filename='vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jszip/dist/jszip.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/pdfmake/build/pdfmake.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/pdfmake/build/vfs_fonts.js') }}"></script>
+
+  <script>
+      $(document).ready( function () {
+          $('#mytable').dataTable({
+              "searching" : false,
+              "bSort": false,
+              "info": false,
+              "bLengthChange": false,
+              "lengthMenu": [10],
+          });
+      } );
+    </script>
+{% endblock javascripts %}
