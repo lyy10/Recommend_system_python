@@ -159,3 +159,67 @@ class connect_db(object):
             self.db.rollback()
             return -1
         return 1
+    def getUserMovieDetail(self, movie):
+        cursor = self.db.cursor()
+        sql = "select Title,average_score,release_date,photo_url,local_photo_url from recommend.movies where MID=" + str(movie.Mid)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            for i in range(len(results[0])):
+                if i == 0:
+                    if results[0][i] is not None:
+                        movie.Name = results[0][i]
+                if i == 1:
+                    if results[0][i] is not None:
+                        movie.averay_scre = results[0][i]
+                elif i == 2:
+                    if results[0][i] is not None:
+                        movie.release_data = results[0][i]
+                elif i == 3:
+                    if results[0][i] is not None:
+                        movie.post = results[0][i]
+                elif i == 4:
+                    if results[0][i] is not None:
+                        movie.local_post = results[0][i]
+        except:
+            return -1
+        return 1
+    def getMovieDetail(self, movie_detail):
+        cursor = self.db.cursor()
+        if self.getUserMovieDetail(movie_detail.base) == -1:
+            return -1
+        sql = "select URL,story_line,kind,director,creator,stars,country,language,runtime from recommend.movies where MID=" + str(movie_detail.base.Mid)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            for i in range(len(results[0])):
+                if i == 0:
+                    if results[0][i] is not None:
+                        movie_detail.url = results[0][i]
+                elif i == 1:
+                    if results[0][i] is not None:
+                        movie_detail.story = results[0][i]
+                elif i == 2:
+                    if results[0][i] is not None:
+                        movie_detail.kind = results[0][i]
+                elif i == 3:
+                    if results[0][i] is not None:
+                        movie_detail.director = results[0][i]
+                elif i == 4:
+                    if results[0][i] is not None:
+                        movie_detail.creator = results[0][i]
+                elif i == 5:
+                    if results[0][i] is not None:
+                        movie_detail.stars = results[0][i]
+                elif i == 6:
+                    if results[0][i] is not None:
+                        movie_detail.country = results[0][i]
+                elif i == 7:
+                    if results[0][i] is not None:
+                        movie_detail.language = results[0][i]
+                elif i == 8:
+                    if results[0][i] is not None:
+                        movie_detail.runtime = results[0][i]
+        except:
+            return -1
+        return 1
