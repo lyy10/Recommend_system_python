@@ -149,3 +149,13 @@ class connect_db(object):
             return results[0][0]
         except:
             return 'null'
+    def updateMovie(self, movie_id, update_sql):
+        cursor = self.db.cursor()
+        sql = "update recommend.movies set " + update_sql[:-1] + " where MID=" + str(movie_id)
+        try:
+            cursor.execute(sql)
+            self.db.commit()
+        except:
+            self.db.rollback()
+            return -1
+        return 1
