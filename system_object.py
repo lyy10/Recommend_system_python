@@ -13,6 +13,12 @@ class Movies(object):
         self.averay_socre = -1
         # 电影名字
         self.Name = ''
+        # 海报外网地址
+        self.post = ''
+        # 海报本地地址
+        self.local_post = ''
+        # 上映日期
+        self.release_data = ''
 
 # User object
 class User():
@@ -40,23 +46,26 @@ class User():
 class MoviesDetail(object):
     def __init__(self):
         # 电影基本类
-        self.movies = Movies()
-        # 电影故事线
-        self.story = ''
-        # 电影类别
-        self.kind = ''
-        # 电影跳转链接
-        self.url = ''
+        self.base = Movies()
 
         # 以下是我所需要的，有重复的你进行合并
         # 导演
+        self.director = ''
         # 编剧
+        self.creator = ''
         # 主演
+        self.stars = ''
         # 类型       （相当于你定义的电影类别）
+        # 电影类别
+        self.kind = ''
         # 制片国家/地区
+        self.country = ''
         # 语言
-        # 上映日期
-        # 片长
-        # 评分
-        # 剧情简介    （相当于你定义的电影故事线）
-        # 电影播放链接 （相当于你定义的电影跳转链接）
+        self.language = ''
+        # 片长 以分钟为单位 -1 为未获取到
+        self.runtime = -1
+        # 评分 (为电影的评价评分，见电影基本类)
+        # 剧情简介    （相当于你定义的电影故事线）# 电影故事线
+        self.story = ''
+        # 电影播放链接 （相当于你定义的电影跳转链接）# 电影跳转链接
+        self.url = ''
