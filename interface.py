@@ -7,11 +7,11 @@ import sys
 
 sys.path.append('./recommend')
 # import _init_users
-
+sys.path.append('./spider/')
 sys.path.append('./../Recommend_system_python/')
 from recommend import _init_users
 from recommend import recommend_movies
-
+import _init_movies
 def get_recommend_movie(user_id):
     """
         传入用户唯一ID
@@ -32,6 +32,7 @@ def getMovieDetail(movie_id):
         若没有电影详情可返回，則返回 0 ,请显示获取电影失败
         成功者返回电影详情类，请参见类设计具体信息
     """
+    return _init_movies.getMovieDetail(movie_id)
 
 def insertUserMovie(movie_id, user_id, Socre):
     """
@@ -54,8 +55,9 @@ def accessCheck(name, password):
     """
         用户登陆检测，检测用户及密码是否正确
         传入用户名字符串， 密码字符串
-        允许登陆返回 1
+        允许登陆返回 用户ID
         密码或用户名错误返回 0
         没有用户返回 -1 提示用户可以注册
     """ 
     return _init_users.accessCheck(name,password)
+print(getMovieDetail(6))
