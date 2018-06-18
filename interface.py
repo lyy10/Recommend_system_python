@@ -1,6 +1,6 @@
 # 
 #
-# 系统相关接口函数
+# 系统数据库相关接口函数
 # 接口在后期根据实际情况增加删除或变动
 # 目前用户总数为 943 , 用户ID 从 1-943
 import sys
@@ -12,6 +12,7 @@ sys.path.append('./../Recommend_system_python/')
 from recommend import _init_users
 from recommend import recommend_movies
 import _init_movies
+import _spider
 def get_recommend_movie(user_id):
     """
         传入用户唯一ID
@@ -20,8 +21,9 @@ def get_recommend_movie(user_id):
     """
     return recommend_movies.getRecommendMovies(user_id)
 
-def isHavePicture(movie_id):
+#def isHavePicture(movie_id):
     """
+        函数废弃，包含于电影基本类中
         判断本地是否存在电影图片，如果不存在返回 0 请导向默认电影图片地址
         存在返回图片地址
     """
@@ -34,14 +36,15 @@ def getMovieDetail(movie_id):
     """
     return _init_movies.getMovieDetail(movie_id)
 
-def insertUserMovie(movie_id, user_id, Socre):
+def insertUserMovie(user_id, movie_id, movie_score):
     """
+    切记： 在调用该函数前，一定要检查该用户是否登陆！！！！
         用户传回电影评分时，调用该函数保存用户数据
-        传入 电影ID， 用户ID， 用户打分数（0-5)
+        传入 用户ID，电影ID ， 用户打分数（0-5)
         成功插入返回 1
-        出错返回 0 ,请返回给用户错误提示
+        出错返回 -1 ,请返回给用户错误提示
     """
-
+    return _init_movies.insertMovieScore(user_id, movie_id, movie_score)
 def isHaveName(name):
     """
         用户修改用户名或注册重名检测，不允许重名，
@@ -60,4 +63,15 @@ def accessCheck(name, password):
         没有用户返回 -1 提示用户可以注册
     """ 
     return _init_users.accessCheck(name,password)
-print(getMovieDetail(6))
+
+def getUserHaveWatch(user_id):
+    """
+        获取用户看过的电影，传入用户唯一ID
+        程序会返回一个用户类，包含了该用户看过的movies电影列表
+    """
+    return _init_movies.getUserHaveWatch(user_id)
+
+if __name__=='__main__':
+    #_spider.movies_detail_view(getMovieDetail(1))
+    #print(insertUserMovie(1,1,5))
+    pass
