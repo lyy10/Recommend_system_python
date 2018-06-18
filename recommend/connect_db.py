@@ -26,6 +26,15 @@ class connect_db(object):
             return results[0][0]
         except:
             return -1
+    def getUserMovieScore(self, user_id, movie_id):
+        cursor = self.db.cursor()
+        sql = 'select Score from recommend.ratings where ID=' + str(user_id) + ' and MID=' + str(movie_id)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            return results[0][0]
+        except:
+            return -1
     def getUserMovies(self, user_id):
         cursor = self.db.cursor()
         sql = 'select MID,Score from recommend.ratings where ID=' + str(user_id)
@@ -171,7 +180,7 @@ class connect_db(object):
                         movie.Name = results[0][i]
                 if i == 1:
                     if results[0][i] is not None:
-                        movie.averay_scre = results[0][i]
+                        movie.average_score = results[0][i]
                 elif i == 2:
                     if results[0][i] is not None:
                         movie.release_data = results[0][i]
@@ -188,7 +197,7 @@ class connect_db(object):
         cursor = self.db.cursor()
         if self.getUserMovieDetail(movie_detail.base) == -1:
             return -1
-        sql = "select URL,story_line,kind,director,creator,stars,country,language,runtime from recommend.movies where MID=" + str(movie_detail.base.Mid)
+        sql = "select URL,story_line,kind,director,creator,stars,country,language,runtime,watch_time from recommend.movies where MID=" + str(movie_detail.base.Mid)
         try:
             cursor.execute(sql)
             results = cursor.fetchall()
@@ -220,6 +229,72 @@ class connect_db(object):
                 elif i == 8:
                     if results[0][i] is not None:
                         movie_detail.runtime = results[0][i]
+                elif i == 9:
+                    if results[0][i] is not None:
+                        movie_detail.watch_time = results[0][i]
         except:
             return -1
         return 1
+    def getMovieWatch(self, movie_id):
+        cursor = self.db.cursor()
+        sql = "select Score from recommend.ratings where MID=" + str(movie_id)
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            watch_time = 0
+            num_score = 0
+            for i in results:
+                watch_time += 1
+                num_score += float(i[0])
+            return watch_time,num_score
+        except:
+            return -1,-1
+    def updateMovieWatch(self, movie_id, watch_time, average):
+        cursor = self.db.cursor()
+        sql = "update recommend.movies set watch_time=" + str(watch_time) + ",average_score=" + \
+                str(average) + " where MID=" + str(movie_id)
+        try:
+            cursor.execute(sql)
+            self.db.commit()
+        except:
+            self.db.rollback()
+            return -1
+        return 1
+    def isMovieWatch(self, user_id, movie_id):
+        cursor = self.db.cursor()
+        sql = "select MID from recommend.ratings where ID=" + str(user_id) + " and MID=" + str(movie_id)
+        try:
+            try:
+                cursor.execute(sql)
+            except:
+                return -1
+            results = cursor.fetchall()
+            if results[0] is None:
+                return 0
+            else:
+                return 1
+        except:
+            return 0
+    def updateUserMovieScore(self, user_id, movie_id, score):
+        cursor = self.db.cursor()
+        sql = "update recommend.ratings set Score=" + str(score) + " where ID=" + str(user_id) + " and MID=" \
+                + str(movie_id)
+        try:
+            cursor.execute(sql)
+            self.db.commit()
+        except:
+            self.db.rollback()
+            return -1
+        return 1
+    def insertMovieScore(self, user_id, movie_id, score):
+        cursor = self.db.cursor()
+        sql = "insert into recommend.ratings(ID,MID,Score) values (" + str(user_id) + "," +\
+                str(movie_id) + "," + str(score) + ")"
+        try:
+            cursor.execute(sql)
+            self.db.commit()
+        except:
+            self.db.rollback()
+            return -1
+        return 1
+
