@@ -10,7 +10,7 @@ class Movies(object):
         # 在用户类中起作用，用户对电影的评分
         self.user_score = _Socre
         # 电影的平均评分
-        self.averay_socre = -1
+        self.average_score = -1
         # 电影名字
         self.Name = ''
         # 海报外网地址
@@ -47,7 +47,8 @@ class MoviesDetail(object):
     def __init__(self):
         # 电影基本类
         self.base = Movies()
-
+        # 观看次数
+        self.watch_time = -1
         # 以下是我所需要的，有重复的你进行合并
         # 导演
         self.director = ''
