@@ -16,6 +16,8 @@ from time import sleep
 
 def movies_detail_view(movies_detail):
     print('Name: ', movies_detail.base.Name)
+    print('average_score:', movies_detail.base.average_score,'user_score', movies_detail.base.user_score,\
+          ' watch_time:',movies_detail.watch_time)
     print('director: ', movies_detail.director, ' creator: ', movies_detail.creator, ' stars: ', movies_detail.stars)
     print('kind: ', movies_detail.kind, ' country: ', movies_detail.country, ' language: ', movies_detail.language)
     print('story: ', movies_detail.story, ' url: ', movies_detail.url, ' runtime: ', movies_detail.runtime)
@@ -81,7 +83,10 @@ def spider(movies_detail):
         movies_detail.kind += a.string.strip() + ','
     movies_detail.kind = movies_detail.kind[:-1]
     #print(soup.select('.poster'))
-    movies_detail.base.post = soup.select('.poster')[0].img['src']
+    try:
+        movies_detail.base.post = soup.select('.poster')[0].img['src']
+    except:
+        return 0
     for k in range(0,10):
         try:
             pic=requests.get(movies_detail.base.post,timeout=2)
@@ -128,9 +133,9 @@ def spider(movies_detail):
 if __name__ == '__main__':
     mysql = connect_db.connect_db()
     stdout_backup = sys.stdout
-    i = 175
+    i = 1683
     pbar = tqdm.tqdm(total = 1682)
-    pbar.update(175)
+    pbar.update(1683)
     while(i<1683):
         #pbar.update(i)
         log_file = open("log.log", "a")
