@@ -134,7 +134,9 @@ def getRecommendMovies(user_id):
     user.name = mysql.getUserName(user_id)
     for i in range(len(recommend)):
         movie = system_object.Movies(recommend[i])
-        movie.Name = mysql.getMoviesName(recommend[i])
+        #movie.Name = mysql.getMoviesName(recommend[i])
+        if mysql.getUserMovieDetail(movie) == -1:
+            continue
         user.movies.append(movie)
     mysql.close()
     return user
