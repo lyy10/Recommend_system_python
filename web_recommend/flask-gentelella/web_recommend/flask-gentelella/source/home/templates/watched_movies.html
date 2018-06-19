@@ -1,0 +1,149 @@
+{% extends "base_site.html" %}
+
+{% block title %} Home {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="right_col" role="main">
+    <div class="row">
+      <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+        <div class="x_panel">
+          <div class="x_content">
+            <table id="mytable" class="table">
+                <thead style="display: none">
+                  <tr>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                    <th width="20%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td valign="bottom">
+                        <div class="col-md-12">
+                          <div class="image view view-first">
+                              <a href="./movie_details" target="_blank">
+                                <img style="width:100%" src="/static/images/test.webp" alt="image">
+                              </a>
+                          </div>
+                          <div class="caption">
+                            <ul class="list-inline">
+                              <li><span>后来的我们 </span></li>
+                              <li><span style="color:#2A3F54"> 7.8</span></li>
+                              <li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-md-12">
+                          <div class="image view view-first">
+                              <a href="./movie_details" target="_blank">
+                                <img style="width:100%" src="/static/images/test1.webp" alt="image">
+                              </a>
+                          </div>
+                          <div class="caption">
+                            <ul class="list-inline">
+                              <li><span>超时空同居 </span></li>
+                              <li><span style="color:#2A3F54"> 7.8</span></li>
+                              <li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-md-12">
+                          <div class="image view view-first">
+                              <a href="./movie_details" target="_blank">
+                                <img style="width:100%" src="/static/images/test2.webp" alt="image">
+                              </a>
+                          </div>
+                          <div class="caption">
+                            <ul class="list-inline">
+                              <li><span>复仇者联盟3 </span></li>
+                              <li><span style="color:#2A3F54"> 7.8</span></li>
+                              <li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-md-12">
+                          <div class="image view view-first">
+                              <a href="./movie_details" target="_blank">
+                                <img style="width:100%" src="/static/images/test3.webp" alt="image">
+                              </a>
+                          </div>
+                          <div class="caption">
+                            <ul class="list-inline">
+                              <li><span>潜艇总动员 </span></li>
+                              <li><span style="color:#2A3F54"> 7.8</span></li>
+                              <li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-md-12">
+                          <div class="image view view-first">
+                              <a href="./movie_details" target="_blank">
+                                <img style="width:100%" src="/static/images/test4.webp" alt="image">
+                              </a>
+                          </div>
+                          <div class="caption">
+                            <ul class="list-inline">
+                              <li><span>幕后玩家 </span></li>
+                              <li><span style="color:#2A3F54"> 7.8</span></li>
+                              <li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ super() }}
+  <!-- FullCalendar -->
+
+  <script src="{{ url_for('static', filename='vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/jszip/dist/jszip.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/pdfmake/build/pdfmake.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/pdfmake/build/vfs_fonts.js') }}"></script>
+
+  <script>
+      $(document).ready( function () {
+          $('#mytable').dataTable({
+              "searching" : false,
+              "bSort": false,
+              "info": false,
+              "bLengthChange": false,
+              "lengthMenu": [4],
+          });
+      } );
+    </script>
+{% endblock javascripts %}
