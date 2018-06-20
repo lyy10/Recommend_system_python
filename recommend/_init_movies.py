@@ -1,8 +1,11 @@
 #
 # Movies related functions
 # June,17 2018 By Lyy
-
+p = '/home/chenghui/project/Recommend_system/Recommend_system_python/'
+pp = [p, p+'recommend', p+'web_recommend', p+'spider']
 import sys
+sys.path.extend(pp)
+# import sys
 sys.path.append('./../')
 sys.path.append('./../spider/')
 import system_object
