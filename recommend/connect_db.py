@@ -8,7 +8,8 @@ import system_object
 
 class connect_db(object):
     def __init__(self):
-        self.host = '172.16.124.17'
+        # self.host = '172.16.124.17'
+        self.host = '120.78.66.10'
         self.port = '3306'
         self.user = 'recommend'
         self.password = 'recommend'
