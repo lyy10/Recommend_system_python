@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/afourmy/flask-gentelella.svg?branch=master)](https://travis-ci.org/afourmy/flask-gentelella)
 [![Coverage Status](https://coveralls.io/repos/github/afourmy/flask-gentelella/badge.svg?branch=master)](https://coveralls.io/github/afourmy/flask-gentelella?branch=develop)
 
@@ -56,3 +57,25 @@ This project shows:
 ### 2. Go the http://127.0.0.1:5000/
 
 ### 3. Create an account and log in
+=======
+# 开发文档
+
+interface.py 里面定义了接口函数，前端所有需要的以及要更改的数据请从这里开始,需要另外的功能请自行在这里添加，并详细说明。
+
+system_object.py 里定了数据结构的组成形式
+
+src 文件夹为存储用户头像，电影画报的图片等
+
+spider 存放爬虫
+
+web文件将全部放在web_recommend文件夹中。
+
+# 任务分配
+Lyy 的程序将在recommend文件夹里
+
+
+Ch 的程序将在Recommend_system_python 根目录下，如若需要请自行建立文件夹，并把文件夹的作用在这里注明。
+
+
+# 爬虫上线
+>>>>>>> 095aa67d27b90fcca3472220c515a880977e3d90
