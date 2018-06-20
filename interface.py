@@ -3,7 +3,10 @@
 # 系统数据库相关接口函数
 # 接口在后期根据实际情况增加删除或变动
 # 目前用户总数为 943 , 用户ID 从 1-943
+p = '/home/chenghui/project/Recommend_system/Recommend_system_python/'
+pp = [p, p+'recommend', p+'web_recommend', p+'spider']
 import sys
+sys.path.extend(pp)
 
 sys.path.append('./recommend')
 # import _init_users
