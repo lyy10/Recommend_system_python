@@ -15,11 +15,15 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
-              <div class="x_title col-md-8 col-md-offset-2"><h2>超时空同居</h2><div class="clearfix"></div></div>
+              <div class="x_title col-md-8 col-md-offset-2"><h2>{{ movie_name }}</h2><div class="clearfix"></div></div>
             <div class="x_content">
               <div class="col-md-3 col-sm-3 col-xs-6 col-md-offset-2" >
                 <div class="col-md-10 col-md-offset-2">
-                    <img style="width:100%" src="/static/images/test1.webp" alt="image">
+                  {% if movie_post　%}
+                    <img style="width:100%" src="{{ movie_post }}" alt="image">
+                  {% else %}
+                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                  {% endif %}
                 </div>
               </div>
               <div class="col-md-4 col-sm-5 col-xs-12 col-md-offset-1" style="border:0px solid #e5e5e5;">
@@ -27,15 +31,15 @@
                 <br/>
                 <br/>
                 <ul class="quick-list">
-                  <li>导演： 苏伦</li>
-                  <li>编剧： 苏伦</li>
-                  <li>主演： 雷佳音 / 佟丽娅 / 张衣 / 于和伟 / 王正佳 / 陶虹 / 李念 / 李光洁 / 杨玏 / 范明 / 徐峥 / 杨迪 / 方龄 / 陈昊</li>
-                  <li>类型： 喜剧 / 奇幻</li>
-                  <li>制片国家/地区： 中国大陆</li>
-                  <li>语言： 汉语普通话</li>
-                  <li>上映日期： 2018-05-18(中国大陆)</li>
-                  <li>片长： 101分钟</li>
-                  <li>评分： 7.2</li>
+                  <li>导演： {{ movie_director }}</li>
+                  <li>编剧： {{ movie_creator }}</li>
+                  <li>主演： {{ movie_stars }}</li>
+                  <li>类型： {{ movie_kind }}</li>
+                  <li>制片国家/地区： {{ movie_country }}</li>
+                  <li>语言： {{ movie_language }}</li>
+                  <!--<li>上映日期： {{ movie_ }}</li>-->
+                  <li>片长： {{ movie_runtime }} 分钟</li>
+                  <li>评分： {{ movie_score }}</li>
                   <!--<li><button id="score" type="button" class="btn btn-primary btn-xs">我已看过我来打分</button></li>-->
                 </ul>
                 <div id="scorediv">
@@ -60,8 +64,8 @@
               <div class="col-md-8 col-sm-3 col-xs-6 col-md-offset-2" >
                 <div>
                     <section>
-                      <h3 class="page-header">剧情简介 · · · · · ·</h3>
-                      <p>来自2018年谷小焦（佟丽娅 饰）与1999年陆鸣（雷佳音 饰），两人时空重叠意外住在同一个房间。从互相嫌弃到试图“共谋大业”，阴差阳错发生了一系列好笑的事情。乐在其中的两人并不知道操控这一切的神秘人竟是想要去2037年“投机取巧”的2018年的……</p>
+                      <h3 class="page-header">{{ movie_name }}剧情简介 · · · · · ·</h3>
+                      <p>{{ movie_story }}</p>
                     </section>
                 </div>
               </div>
@@ -69,7 +73,7 @@
                 <div>
                     <section>
                       <h4 class="page-header">电影播放链接 · · · · · ·</h4>
-                      <p>https://www.imdb.com/title/tt8404272/</p>
+                      <p><a href="{{ movie_url }}">{{ movie_url }}</a></p>
                     </section>
                 </div>
               </div>
