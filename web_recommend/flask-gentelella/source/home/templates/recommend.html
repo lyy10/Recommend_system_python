@@ -28,17 +28,21 @@
                     {% for i in range(count) %}
                     <tr>
                       {% for j in range(5) %}
-                      <td>
+                      <td width="20%">
                         <div class="col-md-12">
                           <div class="image view view-first">
                               <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[5*i+j] ) }}" target="_blank">
-                                <img style="width:100%" src="/static/images/test.webp" alt="image">
+                                {% if movie_post_list[5*i+j] %}
+                                  <img style="width:100%" src="{{ movie_post_list[5*i+j] }}" alt="image">
+                                {% else %}
+                                  <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                {% endif %}
                               </a>
                           </div>
                           <div class="caption">
                             <ul class="list-inline">
                               <li><span>{{ movie_name_list[5*i+j] }} </span></li>
-                              <li><span style="color:#2A3F54">{{ movie_averay_socre_list[5*i+j] }}</span></li>
+                              <li><span style="color:#2A3F54">{{ movie_average_score_list[5*i+j] }}</span></li>
                               <!--<li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>-->
                             </ul>
                           </div>
