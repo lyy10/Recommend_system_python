@@ -80,6 +80,8 @@ def insertUser(user_name, user_password):
         插入成功返回用户ID，失败返回 -1 为重用户名，不允许重用户名
     """
 
+    return _init_users.insert_user(user_name, user_password)
+
 if __name__=='__main__':
     #_spider.movies_detail_view(getMovieDetail(1))
     #print(insertUserMovie(1,1,5))
