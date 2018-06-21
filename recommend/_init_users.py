@@ -11,7 +11,7 @@ def insert_user(name, password):
     mysql = connect_db.connect_db()
     re = mysql.insert_user(name, password)
     mysql.close()
-	return re
+    return re
 
 def isHaveName(name):
     mysql = connect_db.connect_db()
