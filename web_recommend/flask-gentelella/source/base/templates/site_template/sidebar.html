@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="" class="site_title"><i class="fa fa-spinner"></i> <span>个人电影推荐系统!</span></a>
+    <a href="" class="site_title"><i class="fa fa-spinner"></i> <span style="font-size:20px">个人电影推荐系统!</span></a>
   </div>
 
   <div class="clearfix"></div>
@@ -12,7 +12,7 @@
     </div>
     <div class="profile_info">
       <span>欢迎,</span>
-      <h2> {{ current_user.ID }} </h2>
+      <h2> {{ current_user.name }} </h2>
     </div>
   </div>
   <!-- /menu profile quick info -->
@@ -23,7 +23,7 @@
   <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
       <ul class="nav side-menu">
-        <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+        <li><a><i class="fa fa-home"></i> 菜单 <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="/home/recommend">推荐给我的电影</a></li>
             <li><a href="/home/watched_movies">我看过的电影</a></li>
