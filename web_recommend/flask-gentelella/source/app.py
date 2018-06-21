@@ -44,7 +44,9 @@ def configure_login_manager(app, User):
         user = interface.get_recommend_movie(ID)
         if not user:
             return None
-        return User(user.name)
+        user_obj = User(ID)
+        user_obj.name = user.name
+        return user_obj
         # return db.session.query(User).filter_by(id=id).first()
 
     @login_manager.request_loader
