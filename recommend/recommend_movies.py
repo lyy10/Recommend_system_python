@@ -15,7 +15,7 @@ from scipy.sparse import csr_matrix
 def comput_recommend(user_id):
     mysql = connect_db.connect_db()
     similarity_users = mysql.getSimiUsers(user_id, 0.3)
-    if similarity_users == -1:
+    if similarity_users is -1:
         mysql.close()
         return -1
     similarity_users.append(user_id)
