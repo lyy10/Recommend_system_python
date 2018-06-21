@@ -73,23 +73,26 @@ def login():
         result = interface.accessCheck(username, password)
         print("result:", result)
         if result > 0:
+            user = interface.get_recommend_movie(result)
             user_obj = User(result)
-            print("user_obj_type", type(user_obj))
-            print(user_obj.ID)
+            user_obj.name = user.name
             login_user(user_obj)
-            print("current_user:", current_user.ID)
+            print("current_user_id:", current_user.ID)
+            print("current_user_name:", current_user.name)
             #return redirect(url_for('base_blueprint.route_default')) # 怎么能重定向到跟目录呢
             return redirect(url_for('home_blueprint.recommend')) # 登录验证成功，定向到主页面
         return render_template('errors/page_403.html')
     elif 'create_account' in request.form:
-        login_form = LoginForm(request.form)
+        # login_form = LoginForm(request.form)
+        print("**************sign up****************")
         username = str(request.form['username'])
         password = str(request.form['password'])
+        result = interface.insertUser(username, password)
 
-        # user = User(**request.form)
-        # db.session.add(user)
-        # db.session.commit()
-        return redirect(url_for('base_blueprint.login'))
+        if result > 0:
+            return redirect(url_for('base_blueprint.login'))
+        else:
+            print(result)
     if not current_user.is_authenticated:
         return render_template(
             'login/login.html',
