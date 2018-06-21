@@ -68,7 +68,7 @@ def movie_details(movie_id):
     movie_country = movie.country
     movie_language = movie.language
     movie_runtime = movie.runtime
-    movie_score = movie.base.average_score
+    movie_score = round(movie.base.average_score, 2)
     movie_story = movie.story
     movie_url = movie.url
     return render_template('movie_details.html', movie_id=movie_id, movie_name=movie_name,movie_director=movie_director,movie_creator=movie_creator,
