@@ -9,11 +9,9 @@ import connect_db
 
 def insert_user(name, password):
     mysql = connect_db.connect_db()
-    if mysql.insert_user(name, password) == -1:
-        mysql.close()
-        return -1
+    re = mysql.insert_user(name, password)
     mysql.close()
-    return 1
+	return re
 
 def isHaveName(name):
     mysql = connect_db.connect_db()

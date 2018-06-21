@@ -80,7 +80,7 @@ class connect_db(object):
         except:
             self.db.rollback()
             return -1
-        return 1
+        return user_id
     def isHaveName(self, name):
         cursor = self.db.cursor()
         sql = "select ID,Name from recommend_users.user_information"

@@ -15,6 +15,9 @@ from scipy.sparse import csr_matrix
 def comput_recommend(user_id):
     mysql = connect_db.connect_db()
     similarity_users = mysql.getSimiUsers(user_id, 0.3)
+    if similarity_users == -1:
+        mysql.close()
+        return -1
     similarity_users.append(user_id)
     #print(similarity_users)
     similarity_movies = []
@@ -122,14 +125,15 @@ def getRecommendMovies(user_id):
     mysql = connect_db.connect_db()
     have_watch = mysql.getUserMovies(user_id)
     recommend = []
-    for row in movies:
-        i = 1
-        for r in have_watch:
-            if int(row[0]) < 0 or int(row[0]) == r.Mid:
-                i = 0
-                break
-        if i:
-            recommend.append(int(row[0]))
+    if movies is not -1:
+        for row in movies:
+            i = 1
+            for r in have_watch:
+                if int(row[0]) < 0 or int(row[0]) == r.Mid:
+                    i = 0
+                    break
+            if i:
+                recommend.append(int(row[0]))
     user = system_object.User(user_id)
     user.name = mysql.getUserName(user_id)
     for i in range(len(recommend)):

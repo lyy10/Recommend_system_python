@@ -74,6 +74,12 @@ def getUserHaveWatch(user_id):
     """
     return _init_movies.getUserHaveWatch(user_id)
 
+def insertUser(user_name, user_password):
+    """
+        插入新用户，传入用户名及ID
+        插入成功返回用户ID，失败返回 -1 为重用户名，不允许重用户名
+    """
+
 if __name__=='__main__':
     #_spider.movies_detail_view(getMovieDetail(1))
     #print(insertUserMovie(1,1,5))
