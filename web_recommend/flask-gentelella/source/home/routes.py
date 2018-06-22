@@ -51,7 +51,7 @@ def recommend():
         movie_post_list.append(each.post)
     count = len(movie_id_list)
     count = count//5
-    return render_template('recommend.html', movie_id_list=movie_id_list, movie_name_list=movie_name_list, movie_average_score_list=movie_average_score_list, movie_post_list=movie_post_list, count=100)
+    return render_template('recommend.html', movie_id_list=movie_id_list, movie_name_list=movie_name_list, movie_average_score_list=movie_average_score_list, movie_post_list=movie_post_list, count=count)
 
 
 @blueprint.route('/movie_details/<movie_id>')
