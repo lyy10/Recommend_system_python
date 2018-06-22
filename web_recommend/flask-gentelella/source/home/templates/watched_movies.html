@@ -47,7 +47,6 @@
                             <ul class="list-inline">
                               <li><span>{{ movie_name_list[5*i+j] }} </span></li>
                               <li><span style="color:#2A3F54">{{ movie_average_score_list[5*i+j] }}</span></li>
-                              <!--<li><button type="button" class="btn btn-primary btn-xs pull_right">我已看过</button></li>-->
                             </ul>
                           </div>
                         </div>
@@ -92,7 +91,14 @@
               "bSort": false,
               "info": false,
               "bLengthChange": false,
-              "lengthMenu": [4],
+              "lengthMenu": [10],
+              "oLanguage": {
+                "sEmptyTable": "您还没有给看过的电影打分哦～快去给您看过的电影打分吧～",
+                "oPaginate": {
+                    "sPrevious" : "上一页",
+                    "sNext" : "下一页"
+                }
+            }
           });
       } );
     </script>
