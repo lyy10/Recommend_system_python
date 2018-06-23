@@ -130,6 +130,7 @@
                 if(boo){
                     console.log("分数："+($("#myul>li.current").index()+1)+"分");
                     var score = $("#myul>li.current").index()+1;
+                    alert("您此次打分成功！为"+score+"分！");
                     var data= {
                         data: JSON.stringify({
                             "score": score
@@ -141,10 +142,9 @@
                       url: "{{ url_for('home_blueprint.score') }}",
                       data: data,
                       success:function (res) {
-                          alert("Scored Successfully");
+                          <!--alert("您此次打分成功！为"+res+"分！");-->
                       }
                     });
-                    console.log("test");
                 }else{
                 return alert("您还没有选择呢！");
                 }
