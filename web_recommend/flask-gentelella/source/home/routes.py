@@ -1,6 +1,6 @@
 p = '/home/chenghui/project/Recommend_system/Recommend_system_python/'
 pp = [p, p+'recommend', p+'web_recommend']
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 from flask_login import (
     current_user,
     LoginManager,
@@ -51,7 +51,8 @@ def recommend():
         movie_post_list.append(each.post)
     count = len(movie_id_list)
     count = count//5
-    return render_template('recommend.html', movie_id_list=movie_id_list, movie_name_list=movie_name_list, movie_average_score_list=movie_average_score_list, movie_post_list=movie_post_list, count=count)
+    return render_template('recommend.html', movie_id_list=movie_id_list, movie_name_list=movie_name_list,
+                           movie_average_score_list=movie_average_score_list, movie_post_list=movie_post_list, count=count)
 
 
 @blueprint.route('/movie_details/<movie_id>')
@@ -81,6 +82,7 @@ def movie_details(movie_id):
 def score():
     data = json.loads(request.form.get('data'))
     print("Movie Score:", data["score"])
+    # res = data['score']
     return "ok"
 
 
