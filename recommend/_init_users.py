@@ -30,6 +30,7 @@ def accessCheck(name, password):
 def getUserName(user_id):
     mysql = connect_db.connect_db()
     sign = mysql.getUserName(user_id)
+    mysql.close()
     if sign is '':
         return 0
     return sign
