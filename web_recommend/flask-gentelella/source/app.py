@@ -6,7 +6,7 @@ from flask import Flask
 from importlib import import_module
 from logging import basicConfig, DEBUG, getLogger, StreamHandler
 from os.path import abspath, dirname, join, pardir
-import sys
+import sys, time
 # sys.path.append('./../../../../Recommend_system_python/')
 sys.path.extend(pp)
 import interface
@@ -39,26 +39,28 @@ def register_blueprints(app):
 def configure_login_manager(app, User):
     @login_manager.user_loader
     def user_loader(ID):
-        print("---------------user_loader-----------------------")
+        print("---------------user_loader:", time.strftime("%H:%M:%S"))
         print("id:", ID)
-        user = interface.get_recommend_movie(ID)
-        if not user:
+        print("---------------user_loader start get username:", time.strftime("%H:%M:%S"))
+        username = interface.getUserName(ID)
+        print("---------------user_loader end get username:", time.strftime("%H:%M:%S"))
+        if not username:
             return None
         user_obj = User(ID)
-        user_obj.name = user.name
+        user_obj.name = username
         return user_obj
         # return db.session.query(User).filter_by(id=id).first()
 
     @login_manager.request_loader
     def request_loader(request):
-        print("*************request_loader**************")
+        print("*************request_loader", time.strftime("%H:%M:%S"))
         username = request.form.get('username')
         password = request.form.get('password')
         print(username, password)
         # user = db.session.query(User).filter_by(username=username).first()
         user_id = interface.accessCheck(username, password)
         user = interface.get_recommend_movie(user_id)
-
+        print("--------------request_loader end", time.strftime("%H:%M:%S"))
         return user if user else None
 
 

@@ -2,8 +2,9 @@ import sys
 sys.path.append('./../../../../Recommend_system_python/')
 import interface
 from system_object import User
- 
-from flask import Blueprint, render_template, redirect, request, url_for
+import json
+
+from flask import Blueprint, render_template, redirect, request, url_for, jsonify
 from flask_login import (
     current_user,
     LoginManager,
@@ -12,7 +13,7 @@ from flask_login import (
     logout_user
 )
 from .forms import LoginForm, CreateAccountForm
-
+import time
 
 # start the login system
 login_manager = LoginManager()
@@ -59,7 +60,7 @@ def login():
     create_account_form = CreateAccountForm(request.form)
     #########增加了判断请求方式
     if 'GET' == request.method:
-        #return render_template('login/login.html')
+        # return render_template('login/login.html')
         return render_template(
             'login/login.html',
             login_form=login_form,
@@ -69,17 +70,19 @@ def login():
     if 'login' in request.form:
         username = str(request.form['username'])
         password = str(request.form['password'])
-        print("*****************login**********************")
+        print("----------------login interface.accessCheck:", time.strftime("%H:%M:%S"))
         result = interface.accessCheck(username, password)
-        print("result:", result)
+        print("-----result:", result, time.strftime("%H:%M:%S"))
         if result > 0:
-            user = interface.get_recommend_movie(result)
+            print("-------------login start get user object:", time.strftime("%H:%M:%S"))
+            # user = interface.get_recommend_movie(result)
+            print("-------------login end get user object:", time.strftime("%H:%M:%S"))
             user_obj = User(result)
-            user_obj.name = user.name
+            user_obj.name = username
             login_user(user_obj)
             print("current_user_id:", current_user.ID)
             print("current_user_name:", current_user.name)
-            #return redirect(url_for('base_blueprint.route_default')) # 怎么能重定向到跟目录呢
+            # return redirect(url_for('base_blueprint.route_default')) # 怎么能重定向到跟目录呢
             return redirect(url_for('home_blueprint.recommend')) # 登录验证成功，定向到主页面
         return render_template('errors/page_403.html')
     elif 'create_account' in request.form:
@@ -90,17 +93,18 @@ def login():
         result = interface.insertUser(username, password)
 
         if result > 0:
+            # return redirect(url_for('base_blueprint.login'))
             return redirect(url_for('base_blueprint.login'))
         else:
-            print(result)
+            return render_template('errors/name_dup.html')
+
     if not current_user.is_authenticated:
         return render_template(
             'login/login.html',
             login_form=login_form,
             create_account_form=create_account_form
         )
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", current_user.ID)
-    return redirect(url_for('home_blueprint.index'))
+    # return redirect(url_for('home_blueprint.index'))
 
 
 @blueprint.route('/logout')

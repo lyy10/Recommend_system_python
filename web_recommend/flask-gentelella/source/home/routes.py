@@ -14,7 +14,7 @@ sys.path.extend(pp)
 
 import interface
 from system_object import User,Movies,MoviesDetail
-
+import time
 blueprint = Blueprint(
     'home_blueprint',
     __name__,
@@ -39,16 +39,19 @@ def route_template(template):
 @blueprint.route('/recommend')
 @login_required
 def recommend():
+    print("----------------get_recommend_movies", time.strftime("%H:%M:%S"))
     user = interface.get_recommend_movie(int(current_user.ID))
     movie_id_list = []
     movie_name_list = []
     movie_average_score_list = []
     movie_post_list = []
+    print("----------------movie:", time.strftime("%H:%M:%S"))
     for each in user.movies:
         movie_id_list.append(each.Mid)
         movie_name_list.append(each.Name)
         movie_average_score_list.append(round(each.average_score, 2))
         movie_post_list.append(each.post)
+    print("----------------end:", time.strftime("%H:%M:%S"))
     count = len(movie_id_list)
     count = count//5
     return render_template('recommend.html', movie_id_list=movie_id_list, movie_name_list=movie_name_list,
