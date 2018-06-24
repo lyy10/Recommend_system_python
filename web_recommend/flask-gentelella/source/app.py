@@ -1,6 +1,6 @@
 # from config import DebugConfig
-p = '/home/chenghui/project/Recommend_system/Recommend_system_python/'
-pp = [p, p+'recommend', p+'web_recommend']
+p = '/media/lyy/Data/workspace/Recommend_system_python/'
+pp = [p, p+'recommend', p+'web_recommend', p+'spider']
 from flask import Flask
 # from flask_migrate import Migrate
 from importlib import import_module
