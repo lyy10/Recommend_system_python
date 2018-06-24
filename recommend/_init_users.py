@@ -27,6 +27,13 @@ def accessCheck(name, password):
     mysql.close()
     return sign
 
+def getUserName(user_id):
+    mysql = connect_db.connect_db()
+    sign = mysql.getUserName(user_id)
+    if sign is '':
+        return 0
+    return sign
+
 #for i in range(1,944):
 #    if insert_user(str(i),str(i)) == -1:
 #        print('wrong')
