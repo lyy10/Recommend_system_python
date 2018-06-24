@@ -82,6 +82,13 @@ def insertUser(user_name, user_password):
 
     return _init_users.insert_user(user_name, user_password)
 
+def getUserName(user_id):
+    """
+        获取用户名字，成功返回用户名字符串
+        失败返回 0
+    """
+    return _init_users.getUserName(user_id)
+
 if __name__=='__main__':
     #_spider.movies_detail_view(getMovieDetail(1))
     #print(insertUserMovie(1,1,5))
