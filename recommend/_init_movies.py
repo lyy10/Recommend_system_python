@@ -83,7 +83,7 @@ def maitainInitMovies():
     for i in movies:
         mo += str(i) + ','
     mo = mo[:-1]
-    s = mysql.updateInitMovies(mo)
+    s = mysql.updateInitMovies(mo, -1)
     mysql.close()
     return s
 if __name__=='__main__':
