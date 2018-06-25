@@ -11,12 +11,13 @@ from numpy.linalg import solve
 import time
 from scipy.sparse.linalg import gmres,lgmres
 from scipy.sparse import csr_matrix
+import tqdm
 
 def comput_recommend(user_id):
     mysql = connect_db.connect_db()
     similarity_users = mysql.getSimiUsers(user_id, 0.3)
     if similarity_users is -1:
-        re = mysql.getInitMovies()
+        re = mysql.getInitMovies(-1)
         mysql.close()
         return re
     similarity_users.append(user_id)
@@ -145,7 +146,57 @@ def getRecommendMovies(user_id):
         user.movies.append(movie)
     mysql.close()
     return user
+def maintainRecommendList(user_id):
+    movies = comput_recommend(user_id)
+    mysql = connect_db.connect_db()
+    have_watch = mysql.getUserMovies(user_id)
+    recommend = []
+    if movies is not -1:
+        for row in movies:
+            i = 1
+            for r in have_watch:
+                if int(row[0]) < 0 or int(row[0]) == r.Mid:
+                    i = 0
+                    break
+            if i:
+                recommend.append(int(row[0]))
+    mo = ''
+    for i in recommend:
+        mo += str(i) + ','
+    mo = mo[:-1]
+    if mo is not '':
+        mysql.updateInitMovies(mo, user_id)
+        mysql.close()
+        return 1
+    mysql.close()
+    return -1
+
+def getmaintainRecommendMovies(user_id):
+    mysql = connect_db.connect_db()
+    re = mysql.getInitMovies(user_id)
+    recommend = []
+    for i in re:
+        recommend.append(i[0])
+    user = system_object.User(user_id)
+    user.name = mysql.getUserName(user_id)
+    many = len(recommend)
+    if many > 100:
+        many = 100
+    for i in range(many):
+        movie = system_object.Movies(recommend[i])
+        #movie.Name = mysql.getMoviesName(recommend[i])
+        if mysql.getUserMovieDetail(movie) == -1:
+            continue
+        user.movies.append(movie)
+    mysql.close()
+    return user
 #user = getRecommendMovies(405)
 #print(user.ID,user.name)
 #for row in user.movies:
 #    print(row.Mid,row.Name)
+if __name__=='__main__':
+    #pbar = tqdm.tqdm(range(1,945))
+    #for i in pbar:
+    #    if maintainRecommendList(i) == -1:
+    #        print('wrong:', i)
+    pass
