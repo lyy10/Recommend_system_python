@@ -27,8 +27,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% if (movie_id_list|length)%5 == 0 %}
-
                     {% for i in range(count) %}
                     <tr>
                       {% for j in range(5) %}
@@ -54,7 +52,6 @@
                       {% endfor %}
                     </tr>
                     {% endfor %}
-                  {% endif %}
                 </tbody>
             </table>
           </div>
