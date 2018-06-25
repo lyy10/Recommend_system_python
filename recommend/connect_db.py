@@ -121,6 +121,14 @@ class connect_db(object):
                     user.append(row[1])
                 else:
                     user.append(row[0])
+            if sim < 1:
+                if len(user):
+                    return user
+                else:
+                    return -1
+            if len(user) < 5:
+                sim -= 1
+                return self.getSimiUsers(user_id, sim)
             return user
         except:
             # auto. adapt WoW 临时想到
@@ -298,4 +306,39 @@ class connect_db(object):
             self.db.rollback()
             return -1
         return 1
-
+    def gettop100Movies(self):
+        cursor = self.db.cursor()
+        sql = "select MID from recommend.movies order by average_score desc"
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            re = []
+            for i in range(100):
+                re.append(results[i][0])
+            return re
+        except:
+            return -1
+    def updateInitMovies(self, movies):
+        cursor = self.db.cursor()
+        sql = "update recommend.user_recommend set MID='" + movies + "' where ID=-1"
+        try:
+            cursor.execute(sql)
+            self.db.commit()
+        except:
+            self.db.rollback()
+            return -1
+        return 1
+    def getInitMovies(self):
+        cursor = self.db.cursor()
+        sql = "select MID from recommend.user_recommend where ID=-1"
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            results = results[0][0]
+            movies = results.split(',')
+            mo = []
+            for i in movies:
+                mo.append([int(i),0])
+            return mo
+        except:
+            return -1

@@ -92,4 +92,5 @@ def getUserName(user_id):
 if __name__=='__main__':
     #_spider.movies_detail_view(getMovieDetail(1))
     #print(insertUserMovie(1,1,5))
+    #print(insertUser('test','test'))
     pass

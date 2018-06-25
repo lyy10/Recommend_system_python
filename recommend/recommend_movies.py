@@ -16,8 +16,9 @@ def comput_recommend(user_id):
     mysql = connect_db.connect_db()
     similarity_users = mysql.getSimiUsers(user_id, 0.3)
     if similarity_users is -1:
+        re = mysql.getInitMovies()
         mysql.close()
-        return -1
+        return re
     similarity_users.append(user_id)
     #print(similarity_users)
     similarity_movies = []

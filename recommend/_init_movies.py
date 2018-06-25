@@ -73,6 +73,19 @@ def getUserHaveWatch(user_id):
     mysql.close()
     return user
 
+def maitainInitMovies():
+    mysql = connect_db.connect_db()
+    movies = mysql.gettop100Movies()
+    mo = ''
+    if mo is -1:
+        mysql.close()
+        return -1
+    for i in movies:
+        mo += str(i) + ','
+    mo = mo[:-1]
+    s = mysql.updateInitMovies(mo)
+    mysql.close()
+    return s
 if __name__=='__main__':
     #print(maintainAverageScore(599))
     #for i in tqdm.tqdm(range(1,1683)):
@@ -87,4 +100,5 @@ if __name__=='__main__':
     #        print('错误: ',i)
     #print(insertMovieScore(1,1,5))
     #print(getUserHaveWatch(1).movies[0].user_score)
+    #print(maitainInitMovies())
     pass
