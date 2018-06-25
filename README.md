@@ -17,4 +17,8 @@ Lyy 的程序将在recommend文件夹里
 Ch 的程序将在Recommend_system_python 根目录下，如若需要请自行建立文件夹，并把文件夹的作用在这里注明。
 
 
-# 爬虫上线
+# 感谢访问我们的个人电影推荐网站，由于时间关系，部分功能尚未实现。
+
+http://recommend.ly10.xyz
+
+感谢在issues 里提出问题
