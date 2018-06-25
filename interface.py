@@ -22,7 +22,8 @@ def get_recommend_movie(user_id):
         程序会返回一个用户类，包含了推荐给该用户的movies电影列表
             列表中是电影类。请参照类定义
     """
-    return recommend_movies.getRecommendMovies(user_id)
+    #return recommend_movies.getRecommendMovies(user_id)
+    return recommend_movies.getmaintainRecommendMovies(user_id)
 
 #def isHavePicture(movie_id):
     """
