@@ -27,7 +27,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for i in range(count) %}
+                  {% if count%5 == 0 %}
+                    {% for i in range(count // 5) %}
                     <tr>
                       {% for j in range(5) %}
                       <td width="20%">
@@ -52,6 +53,319 @@
                       {% endfor %}
                     </tr>
                     {% endfor %}
+                  {% elif count%5 == 1 %}
+                    {% for i in range(count // 5) %}
+                    <tr>
+                      {% for j in range(5) %}
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[5*i+j] ) }}" target="_blank">
+                                  {% if movie_post_list[5*i+j] %}
+                                    <img style="width:100%" src="{{ movie_post_list[5*i+j] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[5*i+j] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[5*i+j] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+                      <tr>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-1] ) }}" target="_blank">
+                                  {% if movie_post_list[5*i+j] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-1] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-1] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-1] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%"></td>
+                        <td width="20%"></td>
+                        <td width="20%"></td>
+                        <td width="20%"></td>
+                      </tr>
+                  {% elif count%5 == 2 %}
+                    {% for i in range(count // 5) %}
+                      <tr>
+                        {% for j in range(5) %}
+                          <td width="20%">
+                            <div class="col-md-12">
+                              <div class="image view view-first">
+                                  <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[5*i+j] ) }}" target="_blank">
+                                    {% if movie_post_list[5*i+j] %}
+                                      <img style="width:100%" src="{{ movie_post_list[5*i+j] }}" alt="image">
+                                    {% else %}
+                                      <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                    {% endif %}
+                                  </a>
+                              </div>
+                              <div class="caption">
+                                <ul class="list-inline">
+                                  <li><span>{{ movie_name_list[5*i+j] }} </span></li>
+                                  <li><span style="color:#2A3F54">{{ movie_average_score_list[5*i+j] }}</span></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                      <tr>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-2] ) }}" target="_blank">
+                                  {% if movie_post_list[-2] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-2] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-2] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-2] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-1] ) }}" target="_blank">
+                                  {% if movie_post_list[-1] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-1] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-1] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-1] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%"></td>
+                        <td width="20%"></td>
+                        <td width="20%"></td>
+                      </tr>
+                    {% elif count%5 == 3 %}
+                    {% for i in range(count // 5) %}
+                      <tr>
+                        {% for j in range(5) %}
+                          <td width="20%">
+                            <div class="col-md-12">
+                              <div class="image view view-first">
+                                  <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[5*i+j] ) }}" target="_blank">
+                                    {% if movie_post_list[5*i+j] %}
+                                      <img style="width:100%" src="{{ movie_post_list[5*i+j] }}" alt="image">
+                                    {% else %}
+                                      <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                    {% endif %}
+                                  </a>
+                              </div>
+                              <div class="caption">
+                                <ul class="list-inline">
+                                  <li><span>{{ movie_name_list[5*i+j] }} </span></li>
+                                  <li><span style="color:#2A3F54">{{ movie_average_score_list[5*i+j] }}</span></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                      <tr>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-3] ) }}" target="_blank">
+                                  {% if movie_post_list[-3] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-3] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-3] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-3] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-2] ) }}" target="_blank">
+                                  {% if movie_post_list[-2] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-2] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-2] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-2] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-1] ) }}" target="_blank">
+                                  {% if movie_post_list[-1] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-1] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-1] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-1] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%"></td>
+                        <td width="20%"></td>
+                      </tr>
+                    {% elif count%5 == 4 %}
+                    {% for i in range(count // 5) %}
+                      <tr>
+                        {% for j in range(5) %}
+                          <td width="20%">
+                            <div class="col-md-12">
+                              <div class="image view view-first">
+                                  <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[5*i+j] ) }}" target="_blank">
+                                    {% if movie_post_list[5*i+j] %}
+                                      <img style="width:100%" src="{{ movie_post_list[5*i+j] }}" alt="image">
+                                    {% else %}
+                                      <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                    {% endif %}
+                                  </a>
+                              </div>
+                              <div class="caption">
+                                <ul class="list-inline">
+                                  <li><span>{{ movie_name_list[5*i+j] }} </span></li>
+                                  <li><span style="color:#2A3F54">{{ movie_average_score_list[5*i+j] }}</span></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                      <tr>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-4] ) }}" target="_blank">
+                                  {% if movie_post_list[-4] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-4] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-4] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-4] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-3] ) }}" target="_blank">
+                                  {% if movie_post_list[-3] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-3] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-3] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-3] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-2] ) }}" target="_blank">
+                                  {% if movie_post_list[-2] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-2] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-2] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-2] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%">
+                          <div class="col-md-12">
+                            <div class="image view view-first">
+                                <a href="{{ url_for('home_blueprint.movie_details', movie_id=movie_id_list[-1] ) }}" target="_blank">
+                                  {% if movie_post_list[-1] %}
+                                    <img style="width:100%" src="{{ movie_post_list[-1] }}" alt="image">
+                                  {% else %}
+                                    <img style="width:100%" src="/static/images/post.jpg" alt="image">
+                                  {% endif %}
+                                </a>
+                            </div>
+                            <div class="caption">
+                              <ul class="list-inline">
+                                <li><span>{{ movie_name_list[-1] }} </span></li>
+                                <li><span style="color:#2A3F54">{{ movie_average_score_list[-1] }}</span></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td width="20%"></td>
+                      </tr>
+                  {% endif %}
                 </tbody>
             </table>
           </div>
