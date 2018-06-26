@@ -1,5 +1,5 @@
 # from config import DebugConfig
-p = '/media/lyy/Data/workspace/Recommend_system_python/'
+p = '/home/chenghui/project/Recommend_system/Recommend_system_python/'
 pp = [p, p+'recommend', p+'web_recommend', p+'spider']
 from flask import Flask
 # from flask_migrate import Migrate
@@ -58,10 +58,14 @@ def configure_login_manager(app, User):
         password = request.form.get('password')
         print(username, password)
         # user = db.session.query(User).filter_by(username=username).first()
-        user_id = interface.accessCheck(username, password)
-        user = interface.get_recommend_movie(user_id)
-        print("--------------request_loader end", time.strftime("%H:%M:%S"))
-        return user if user else None
+        if (username is not None) and (password is not None):
+            user_id = interface.accessCheck(username, password)
+            user = User(user_id)
+            user.name = username
+            # user = interface.get_recommend_movie(user_id)
+            print("--------------request_loader end", time.strftime("%H:%M:%S"))
+            return user if user else None
+        return None
 
 
 # def configure_database(app):
