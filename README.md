@@ -19,5 +19,5 @@ http://recommend.ly10.xyz
 >目前网站只是实验版
 >网站登陆用户名为 1-943 的数字
 >密码跟用户名一样，当然您也可以自己注册账户
-[link to Google!](http://google.com)
+[项目设计文档](http://google.com)
 感谢在issues 里提出问题
