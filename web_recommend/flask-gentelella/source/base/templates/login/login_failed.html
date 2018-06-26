@@ -1,0 +1,36 @@
+{% extends "base_site.html" %}
+
+{% block title %} login failed {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block sidebar %}{% endblock sidebar %}
+
+{% block top_navigation %}{% endblock top_navigation %}
+
+{% block content %}
+  <div class="col-md-12">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col-middle">
+      <div class="text-center text-center">
+        <h3>用户名或密码错误,请重新登录!</h3>
+        <br>
+        <br>
+        <br>
+        <h4><a href="{{ url_for('base_blueprint.login') }}">点击这里重新登录</a></h4>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}
+
+
