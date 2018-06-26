@@ -1,20 +1,18 @@
-# 开发文档
-
-interface.py 里面定义了接口函数，前端所有需要的以及要更改的数据请从这里开始,需要另外的功能请自行在这里添加，并详细说明。
-
-system_object.py 里定了数据结构的组成形式
-
-src 文件夹为存储用户头像，电影画报的图片等
-
-spider 存放爬虫
-
-web文件将全部放在web_recommend文件夹中。
-
-# 任务分配
-Lyy 的程序将在recommend文件夹里
+## python 课程小项目
 
 
-Ch 的程序将在Recommend_system_python 根目录下，如若需要请自行建立文件夹，并把文件夹的作用在这里注明。
+本项目完全使用python语言开发，数据库采用Mysql。项目基于用户电影历史评分记录，向用户推荐可能感兴趣的电影，能够做到千人千面的实时推荐。<br>
+[项目设计文档](design.md)<br>
+[项目说明文档](instruction.md)<br> 
+[项目使用文档](example.md) <br>
+[项目测试文档](test.md) <br>
 
+### 感谢访问我们的个人电影推荐网站。
 
-# 爬虫上线
+http://recommend.ly10.xyz<br>
+[我们的网站地址](http://recommend.ly10.xyz)
+>目前网站只是实验版
+>网站登陆用户名为 1-943 的数字
+>密码跟用户名一样，当然您也可以自己注册账户
+[项目设计文档](design.md)
+感谢在issues 里提出问题

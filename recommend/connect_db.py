@@ -318,9 +318,21 @@ class connect_db(object):
             return re
         except:
             return -1
-    def updateInitMovies(self, movies):
+    def updateInitMovies(self, movies, user_id):
         cursor = self.db.cursor()
-        sql = "update recommend.user_recommend set MID='" + movies + "' where ID=-1"
+        sql = "select ID from recommend.user_recommend where ID=" + str(user_id)
+        sign = 1
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            if results[0] is None:
+                sign = 0
+        except:
+            sign = 0
+        if sign:
+            sql = "update recommend.user_recommend set MID='" + movies + "',Time=Now() where ID=" + str(user_id)
+        else:
+            sql = "insert into recommend.user_recommend values(" + str(user_id) + ",'"+ movies + "',Now())"
         try:
             cursor.execute(sql)
             self.db.commit()
@@ -328,9 +340,9 @@ class connect_db(object):
             self.db.rollback()
             return -1
         return 1
-    def getInitMovies(self):
+    def getInitMovies(self, user_id):
         cursor = self.db.cursor()
-        sql = "select MID from recommend.user_recommend where ID=-1"
+        sql = "select MID from recommend.user_recommend where ID=" + str(user_id)
         try:
             cursor.execute(sql)
             results = cursor.fetchall()
