@@ -174,6 +174,8 @@ def maintainRecommendList(user_id):
 def getmaintainRecommendMovies(user_id):
     mysql = connect_db.connect_db()
     re = mysql.getInitMovies(user_id)
+    if re is -1:
+        re = mysql.getInitMovies(-1)
     recommend = []
     for i in re:
         recommend.append(i[0])
