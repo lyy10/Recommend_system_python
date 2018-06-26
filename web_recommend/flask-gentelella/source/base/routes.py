@@ -84,7 +84,7 @@ def login():
             print("current_user_name:", current_user.name)
             # return redirect(url_for('base_blueprint.route_default')) # 怎么能重定向到跟目录呢
             return redirect(url_for('home_blueprint.recommend')) # 登录验证成功，定向到主页面
-        return render_template('errors/page_403.html')
+        return render_template('login/login_failed.html')
     elif 'create_account' in request.form:
         # login_form = LoginForm(request.form)
         print("**************sign up****************")
@@ -94,9 +94,9 @@ def login():
 
         if result > 0:
             # return redirect(url_for('base_blueprint.login'))
-            return redirect(url_for('base_blueprint.login'))
+            return render_template('login/signup_success.html', username=username, password=password)
         else:
-            return render_template('errors/name_dup.html')
+            return render_template('login/name_dup.html')
 
     if not current_user.is_authenticated:
         return render_template(
