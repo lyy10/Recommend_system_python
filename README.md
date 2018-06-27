@@ -3,7 +3,7 @@
 
 本项目完全使用python语言开发，数据库采用Mysql。项目基于用户电影历史评分记录，向用户推荐可能感兴趣的电影，能够做到千人千面的实时推荐。<br>
 [项目设计文档](design.md)<br>
-[项目说明文档](instruction.md)<br> 
+[项目说明文档](instructions.md)<br> 
 [项目使用文档](example.md) <br>
 [项目测试文档](test.md) <br>
 
