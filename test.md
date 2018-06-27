@@ -60,6 +60,10 @@
 >    log_file.close()
 >
 >```
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
 测试结果如下：
  用户ID  | 查全率 | 查准率
 --------|--------|------
