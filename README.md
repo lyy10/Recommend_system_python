@@ -9,10 +9,11 @@
 
 ### 感谢访问我们的个人电影推荐网站。
 
-http://recommend.ly10.xyz<br>
 [我们的网站地址](http://recommend.ly10.xyz)
+
+http://recommend.ly10.xyz<br>
+
 >目前网站只是实验版
 >网站登陆用户名为 1-943 的数字
 >密码跟用户名一样，当然您也可以自己注册账户
-[项目设计文档](design.md)
-感谢在issues 里提出问题
+>感谢在issues 里提出问题
