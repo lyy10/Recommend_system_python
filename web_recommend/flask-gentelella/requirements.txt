@@ -4,3 +4,9 @@ flask_migrate
 flask_wtf
 flask_sqlalchemy
 gunicorn
+requests
+bs4
+numpy
+tqdm
+scipy
+PyMySQL
