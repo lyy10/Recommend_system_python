@@ -37,14 +37,17 @@ $ git clone https://github.com/lyy10/Recommend_system_python.git
 ```
 
 <h4>3.安装需要用到的包</h4>
+
 ```
 $ cd Recommend_system_python/web_recommend/flask-gentelella
 $ pip install -r requirements
 ```
 <h4>4.运行代码</h4>
+
 ```
 $ cd source
 $ python app.py
 ```
 <h4>5.在浏览器中访问:http://127.0.0.1:5000/</h4>
+
 即可在本地将该项目运行起来.
